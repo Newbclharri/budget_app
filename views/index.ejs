@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Budgtr</title>
-        <link rel="stylesheet" href="/normalize.css">
-        <link rel="stylesheet" href="/skeleton.css">
-    </head>
-    <body>
+    <%- include("partials/head.ejs") %> 
+    <% if(bankAccount >= 1000){%> 
+    <body style="background-color: greenyellow">
         <div class="container"></div>
-        <h1>Budgtr</h1>
+        <h1 style="margin: 0px">Budgtr $<%= bankAccount %> </h1>
+        <nav style="margin: 0px"><a href="/budgtr/new" style="font-size: 40px">💵</a></nav>
+
         <table>
             <% for(let i =0; i < budget.length; i++){%>
                 <tr>
@@ -21,4 +17,37 @@
            <% } %>             
         </table>
     </body>
+    <% }else if(bankAccount <= 0){%>
+        <body style="background-color: rgba(231, 33, 33, 1)">
+            <div class="container"></div>
+            <h1 style="margin: 0px">Budgtr $<%= bankAccount %> </h1>
+            <nav style="margin: 0px"><a href="/budgtr/new" style="font-size: 40px">💵</a></nav>
+
+            <table>
+                <% for(let i =0; i < budget.length; i++){%>
+                    <tr>
+                        <td><%=budget[i].date%></td> 
+                        <td><a href="/budgtr/<%=i%>"><%=budget[i].name %></a></td>
+                        <td><%=budget[i].amount%></td>
+                    </tr>
+            <% } %>             
+            </table>
+    </body>
+    <%} else{ %>
+        <body>
+            <div class="container"></div>
+            <h1 style="margin: 0px">Budgtr $<%= bankAccount %> </h1>
+            <nav style="margin: 0px"><a href="/budgtr/new" style="font-size: 40px">💵</a></nav>
+
+            <table>
+                <% for(let i =0; i < budget.length; i++){%>
+                    <tr>
+                        <td><%=budget[i].date%></td> 
+                        <td><a href="/budgtr/<%=i%>"><%=budget[i].name %></a></td>
+                        <td><%=budget[i].amount%></td>
+                    </tr>
+            <% } %>             
+            </table>
+    </body>
+    <% } %> 
 </html>
