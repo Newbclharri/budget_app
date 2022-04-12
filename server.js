@@ -1,18 +1,9 @@
 require("dotenv").config();
+
 ////////////////////////
 // Database
 ////////////////////////
-
 const budget = require("./models/budget.js");
-const bankAccount = () =>{
-    let sum = 0;
-    for(let i = 0; i < budget.length; i++){
-        sum += budget[i].amount
-    }
-    
-    return sum
-}
-
 console.log(bankAccount())
 
 
@@ -20,7 +11,7 @@ console.log(bankAccount())
 // Setup - Import deps and create app object
 ////////////////////////
 const expressServer = require("express");
-const { redirect } = require("express/lib/response");
+const { redirect, type } = require("express/lib/response");
 const app = expressServer();
 const PORT = process.env.PORT;
 
@@ -30,6 +21,7 @@ const PORT = process.env.PORT;
 // app.use(expressServer.static('public'))
 app.use('/static',expressServer.static('public'))
 app.use(expressServer.urlencoded({extended: false})); //need this because html form data is not JSON formatted
+
 
 ///////////////////////
 // Declare Routes and Routers 
@@ -79,3 +71,17 @@ app.get("/budgtr/:id", (req, res)=>{
 app.listen(PORT, ()=>{
     console.log("You are listening on port ", PORT);
 });
+
+
+///////////////////////////
+// Functions
+///////////////////////////
+function bankAccount (){
+    let sum = 0;
+    for(let i = 0; i < budget.length; i++){
+        sum += budget[i].amount
+    }
+    
+    return sum
+}
+

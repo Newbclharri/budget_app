@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include("partials/head.ejs") %> 
-    <% if(bankAccount >= 1000){%> 
-    <body style="background-color: greenyellow">
+    <%- include("partials/head.ejs") %>   
+    <body>
+        <% if(bankAccount < 0){ %> 
+            <script defer>
+                let body = document.body;
+                body.classList.toggle("red")      
+            </script>
+        <% } else if(bankAccount > 1000){%>
+                <script>
+                    body = document.body;
+                    body.classList.toggle("green")
+                </script>
+            <% } %> 
         <div class="container"></div>
         <h1 style="margin: 0px">Budgtr $<%= bankAccount %> </h1>
-        <nav style="margin: 0px"><a href="/budgtr/new" style="font-size: 40px">💵</a></nav>
+        <nav style="margin: 0px"><a href="/budgtr/new" style="font-size: 40px" class="nav">💵<div class="nav"><span >Add Expense</span></div></a></nav>
 
         <table>
             <% for(let i =0; i < budget.length; i++){%>
@@ -16,38 +26,7 @@
                 </tr>
            <% } %>             
         </table>
-    </body>
-    <% }else if(bankAccount <= 0){%>
-        <body style="background-color: rgba(231, 33, 33, 1)">
-            <div class="container"></div>
-            <h1 style="margin: 0px">Budgtr $<%= bankAccount %> </h1>
-            <nav style="margin: 0px"><a href="/budgtr/new" style="font-size: 40px">💵</a></nav>
-
-            <table>
-                <% for(let i =0; i < budget.length; i++){%>
-                    <tr>
-                        <td><%=budget[i].date%></td> 
-                        <td><a href="/budgtr/<%=i%>"><%=budget[i].name %></a></td>
-                        <td><%=budget[i].amount%></td>
-                    </tr>
-            <% } %>             
-            </table>
-    </body>
-    <%} else{ %>
-        <body>
-            <div class="container"></div>
-            <h1 style="margin: 0px">Budgtr $<%= bankAccount %> </h1>
-            <nav style="margin: 0px"><a href="/budgtr/new" style="font-size: 40px">💵</a></nav>
-
-            <table>
-                <% for(let i =0; i < budget.length; i++){%>
-                    <tr>
-                        <td><%=budget[i].date%></td> 
-                        <td><a href="/budgtr/<%=i%>"><%=budget[i].name %></a></td>
-                        <td><%=budget[i].amount%></td>
-                    </tr>
-            <% } %>             
-            </table>
-    </body>
-    <% } %> 
+    </body>    
 </html>
+
+ 

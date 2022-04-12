@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    /* border: 1px solid black; */
+}
+
+.red{
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.green{
+    background-color: greenyellow;
+}
+nav{
+    width: fit-content;
+}
+nav span{
+    color: purple;
+    font-size: 20px;
+    margin-left: 10px;
+    position: relative;
+    top: -20px;
+    
+}
+
+nav span:hover{
+    color: green;
+    font-weight: bolder;
+}
+
+
+nav a{
+    margin-bottom: 0px;
+    margin-left: 40px;
+}
+
+nav div{
+    position: relative;
+    top: -10px;
+}
+
